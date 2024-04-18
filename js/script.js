@@ -68,23 +68,6 @@ function init() {
   gameState.walls.push(createBoundary(1000, 1000, 900, 1000, ctx));
   gameState.walls.push(createBoundary(900, 1000, 900, 900, ctx));
 
-  // create some walls
-  gameState.walls.push(createBoundary(300, 300, 400, 300, ctx));
-  gameState.walls.push(createBoundary(400, 300, 400, 400, ctx));
-  gameState.walls.push(createBoundary(400, 400, 300, 400, ctx));
-  gameState.walls.push(createBoundary(300, 400, 300, 300, ctx));
-
-  gameState.walls.push(createBoundary(500, 500, 600, 500, ctx));
-  gameState.walls.push(createBoundary(600, 500, 600, 600, ctx));
-  gameState.walls.push(createBoundary(600, 600, 500, 600, ctx));
-  gameState.walls.push(createBoundary(500, 600, 500, 500, ctx));
-
-  gameState.walls.push(createBoundary(700, 700, 800, 700, ctx));
-  gameState.walls.push(createBoundary(800, 700, 800, 800, ctx));
-  gameState.walls.push(createBoundary(800, 800, 700, 800, ctx));
-  gameState.walls.push(createBoundary(700, 800, 700, 700, ctx));
-  
-
   document.addEventListener("keydown", handleKeyDown);
   document.addEventListener("keyup", handleKeyUp);
 
