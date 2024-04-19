@@ -1,10 +1,11 @@
 import { createBoundary, createPlayer } from './gameObjects.js';
 
 let canvas = document.getElementById("canvas");
+let canvasFps = document.getElementById("canvas-fps");
 let ctx = canvas.getContext("2d");
+let ctxFps = canvasFps.getContext("2d");
 const width = canvas.width;
 const height = canvas.height;
-
 
 let gameState = {
   player: createPlayer(ctx),
@@ -103,7 +104,22 @@ function mainLoop() {
   ctx.save();
   ctx.translate(-gameState.player.pos.x + width / 2, -gameState.player.pos.y + height / 2);
   gameState.player.draw();
-  gameState.player.look(gameState.walls);
+  const scene = gameState.player.look(gameState.walls);
+  const w = width / scene.length;
+
+  ctxFps.clearRect(0, 0, ctxFps.canvas.width, ctxFps.canvas.height);
+
+  ctxFps.save();
+  for (let i = 0; i < scene.length; i++) {
+    let dist = scene[i];
+    let normalizedDist = 1 - Math.min(1, dist / width * 0.9);
+    let normalizedHeight = height * normalizedDist;
+
+    ctxFps.fillStyle = `rgba(255, 255, 255, ${normalizedDist})`;
+    ctxFps.fillRect(i * w, (height - normalizedHeight) / 2, w, normalizedHeight);
+  }
+  ctxFps.restore();
+
   for (let wall of gameState.walls) {
     wall.draw();
   }

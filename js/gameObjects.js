@@ -91,7 +91,7 @@ export function createPlayer(ctx) {
 
   function updateRays() {
     rays = [];
-    for (let i = 0; i < 45; i += 0.1) {
+    for (let i = 0; i < 30; i += 0.1) {
       rays.push(createFlashlight(pos, i * Math.PI / 180, ctx));
     }
   }
@@ -121,6 +121,7 @@ export function createPlayer(ctx) {
   }
 
   function look(walls) {
+    const scene = [];
     for (let ray of rays) {
       let closest = null;
       let record = Infinity;
@@ -141,7 +142,9 @@ export function createPlayer(ctx) {
         ctx.strokeStyle = "white";
         ctx.stroke();
       }
+      scene.push(record);
     }
+    return scene;
   }
 
   return { pos, rays, rotate, draw, update, look };
